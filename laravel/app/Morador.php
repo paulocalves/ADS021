@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Visitante extends Model
+class Morador extends Model
 {
         public function Condominio () {
         
