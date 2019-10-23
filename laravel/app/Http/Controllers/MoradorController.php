@@ -26,6 +26,7 @@ class MoradorController extends Controller
         
         $morador = Morador::find($id);
         $morador->delete();
+        
         return redirect('morador/listar');
     }
     
@@ -34,7 +35,8 @@ class MoradorController extends Controller
         if($request->has('id')){
             $morador = Morador::find($request->id);
         }
-
+   
+        
         $morador->unidade = $request->unidade;
         $morador->nome = $request->nome;
         $morador->cpf = $request->cpf;
