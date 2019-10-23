@@ -30,7 +30,7 @@ class MoradorController extends Controller
     }
     
     public function salvar (Request $request){
-        $morador = Morador();
+        $morador =  new Morador();
         if($request->has('id')){
             $morador = Morador::find($request->id);
         }

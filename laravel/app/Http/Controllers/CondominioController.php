@@ -30,7 +30,7 @@ class CondominioController extends Controller
     }
     
     public function salvar (Request $request){
-        $condominio = Condominio();
+        $condominio =  new  Condominio();
         if($request->has('id')){
             $condominio = Condominio::find($request->id);
         }
