@@ -7,14 +7,12 @@ use App\Condominio;
 use Illuminate\Http\Request;
 
 class UnidadeController extends Controller {
-    
-    
+
     public function __construct() {
-        
+
+
         $this->middleware('auth');
     }
-    
-    
 
     public function listar() {
 
@@ -23,13 +21,13 @@ class UnidadeController extends Controller {
 
     public function criar() {
 
-        return view('unidade.criar', ['unidade' => new Unidade(), 'condominios' => Condominio::all(), 'id_condominio'=>'']);
+        return view('unidade.criar', ['unidade' => new Unidade(), 'condominios' => Condominio::all(), 'id_condominio' => '']);
     }
 
     public function editar($id) {
-        
+
         $id_cond = Unidade::find($id);
-         return view('unidade.criar', ['unidade' => Unidade::find($id),'condominios' => Condominio::all(),'id_condominio' =>$id_cond->condominio_id]);
+        return view('unidade.criar', ['unidade' => Unidade::find($id), 'condominios' => Condominio::all(), 'id_condominio' => $id_cond->condominio_id]);
     }
 
     public function remover($id) {
@@ -55,12 +53,11 @@ class UnidadeController extends Controller {
         $unidade->save();
         return redirect('unidade/listar');
     }
-    
-      public function obterUnidade($id) {
-          
-          $condominio = Condominio::find($id);
-          return $condominio->Unidade;
+
+    public function obterUnidade($id) {
+
+        $condominio = Condominio::find($id);
+        return $condominio->Unidade;
     }
-    
 
 }

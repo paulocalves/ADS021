@@ -7,42 +7,39 @@ use App\Unidade;
 use App\Condominio;
 use Illuminate\Http\Request;
 
-class MoradorController extends Controller
-{
-    
-     
+class MoradorController extends Controller {
+
     public function __construct() {
-        
+
         $this->middleware('auth');
     }
-    
-    
-    public function listar (){
-        
-        return view('morador.listar',['moradores' => Morador::paginate(5)]);
+
+    public function listar() {
+
+        return view('morador.listar', ['moradores' => Morador::paginate(5)]);
     }
-    
-    public function criar (){
-        
-        return view('morador.criar',['morador'=>new Morador(), 'condominios' => Condominio::all(), 'id_condominio'=>'','unidades' => Unidade::all(), 'id_unidade'=>'']);
+
+    public function criar() {
+
+        return view('morador.criar', ['morador' => new Morador(), 'condominios' => Condominio::all(), 'id_condominio' => '', 'unidades' => Unidade::all(), 'id_unidade' => '']);
     }
-    
-    public function editar ($id){
-        
+
+    public function editar($id) {
+
         return Morador::find($id);
     }
-    
-    public function remover ($id){
-        
+
+    public function remover($id) {
+
         $morador = Morador::find($id);
         $morador->delete();
-        
+
         return redirect('morador/listar');
     }
-    
-    public function salvar (Request $request){
-        $morador =  new Morador();
-        if($request->has('id')){
+
+    public function salvar(Request $request) {
+        $morador = new Morador();
+        if ($request->has('id')) {
             $morador = Morador::find($request->id);
         }
 
@@ -58,5 +55,5 @@ class MoradorController extends Controller
         $morador->save();
         return redirect('morador/listar');
     }
-    
+
 }
