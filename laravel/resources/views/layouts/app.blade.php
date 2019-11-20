@@ -31,6 +31,15 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+                    <a class="navbar-brand" href="/condominio/listar">
+                        {{ config('Condomínio', 'Condomínio') }}
+                    </a>
+                    <a class="navbar-brand" href="{{ url('/unidade/listar') }}">
+                        {{ config('Unidade', 'Unidade') }}
+                    </a>
+                    <a class="navbar-brand" href="{{ url('/morador/listar') }}">
+                        {{ config('Morador', 'Morador') }}
+                    </a> 
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -76,5 +85,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-</body>
+    @yield('js')
+    </body>
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </html>

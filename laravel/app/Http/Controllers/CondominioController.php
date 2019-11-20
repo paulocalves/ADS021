@@ -4,22 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Condominio;
 use Illuminate\Http\Request;
+use App\Http\Requests\CondominioRequest;
 
 class CondominioController extends Controller
 {
+    
+    
+    public function __construct() {
+        
+        $this->middleware('auth');
+    }
+    
+    
+
     public function listar (){
         
-        return Condominio::all();
+        return view('condominio.listar',['condominios' =>Condominio::paginate(5)]);
     }
     
     public function criar (){
         
-        
+        return view('condominio.criar',['condominio'=>new Condominio()]);
     }
     
     public function editar ($id){
         
-        return Condominio::find($id);
+        
+        return view('condominio.criar',['condominio'=>Condominio::find($id)]);
     }
     
     public function remover ($id){
@@ -29,7 +40,7 @@ class CondominioController extends Controller
         return redirect('condominio/listar');
     }
     
-    public function salvar (Request $request){
+    public function salvar (CondominioRequest $request){
         $condominio =  new  Condominio();
         if($request->has('id')){
             $condominio = Condominio::find($request->id);
